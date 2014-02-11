@@ -1,0 +1,28 @@
+public class Solution {
+    public int removeDuplicates(int[] A) {
+        int len = A.length;
+        if(len <= 2){
+            return len;
+        }
+        int head = 0;
+        int tail = 1;
+        int count = 0;
+        while(tail < len){
+            if(A[head] == A[tail]){
+                count++;
+                if(count < 2){
+                    A[++head] = A[tail];
+                }
+                else{
+                    tail++;
+                }
+            }
+            else{
+                A[++head] = A[tail];
+                tail++;
+                count=0;
+            }
+        }
+     return head+1;
+    }
+}    
