@@ -1,0 +1,36 @@
+public class Solution {
+    public int search(int[] A, int target) {
+        return binarySearch(A, target, 0, A.length-1);
+    }
+    
+    public int binarySearch(int[] A, int target, int low, int high){
+        if(high == low){
+            if(A[high] == target)    return high;
+            else return -1;
+        }
+        if(high == low + 1){
+            if (A[low] == target){   return low;}
+            else if (A[high] == target){   return high;}
+            else{   return -1;}
+        }
+        
+        int mid = (low + high) / 2;
+        if(target == A[mid])    return  mid;
+        else if(target > A[mid]){
+            if(A[mid] >= A[low] || target < A[low]){
+                return binarySearch(A, target, mid, high);
+            }
+            else{
+                return binarySearch(A, target, low, mid);
+            }
+        }
+        else{
+            if(A[mid] < A[low] || target >= A[low]){
+                return binarySearch(A, target, low, mid);
+            }
+            else{
+                return binarySearch(A, target, mid, high);
+            }
+        }
+    }
+}
